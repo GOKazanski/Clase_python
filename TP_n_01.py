@@ -1,20 +1,19 @@
 # 5 - Desarrollar una función que permita convertir un número romano en un número decimal.
+nromanos = {'M':1000,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1}
 
-n_romanos = {'M':1000,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1}
-
-def convertir_romano_a_decimal (num, pos, n_romanos):
+def convertir_romano_a_decimal (num, pos, nromanos):
     if (pos==(len(num)-1)):
-        return n_romanos[num[pos]]
+        return nromanos[num[pos]]
     else:
-        romana_actual = n_romanos [num[pos]]
-        ronana_siguiente = n_romanos [num[pos + 1]]
-        if (romana_actual < ronana_siguiente):
-            return - romana_actual + convertir_romano_a_decimal (num, pos + 1, n_romanos)
+        romana_actual = nromanos [num[pos]]
+        romana_siguiente = nromanos [num[pos + 1]]
+        if (romana_actual < romana_siguiente):
+            return - romana_actual + convertir_romano_a_decimal (num, pos + 1, nromanos)
         else:
-            if (romana_actual >= ronana_siguiente):
-                return romana_actual + convertir_romano_a_decimal (num, pos + 1, n_romanos)
+            if (romana_actual >= romana_siguiente):
+                return romana_actual + convertir_romano_a_decimal (num, pos + 1, nromanos)
             
-print (convertir_romano_a_decimal ('MCMLXXIV', 0, n_romanos))
+print (convertir_romano_a_decimal ('MCMLXXIV', 0, nromanos))
 
 # 22 - El problema de la mochila Jedi. Suponga que un Jedi (Luke Skywalker, Obi-Wan Kenobi, Rey u 
 # otro, el que más le guste) está atrapado, pero muy cerca está su mochila que contiene muchos objetos. 
@@ -27,8 +26,8 @@ print (convertir_romano_a_decimal ('MCMLXXIV', 0, n_romanos))
 
 mochila_jedi = ['manta', 'casco','escudo','sable de luz', 'kimono']
 
-def usar_la_fuerza (mochila:_jedi, pos):
-    if (pos < len(mochila_jedi):
+def usar_la_fuerza (mochila_jedi, pos):
+    if (pos < len(mochila_jedi)):
         if (mochila_jedi [pos]=='sable de luz'):
             print ('El Sable de Luz salió estaba en la mochila y salió en la posición: ', pos)
         else:
@@ -36,7 +35,7 @@ def usar_la_fuerza (mochila:_jedi, pos):
     else:
         print ('El sable de luz no está en la mochila')
         
-print (usar_la_fuerza (mochila_jedi, 0)
+print (usar_la_fuerza (mochila_jedi, 0))
         
 # 23 - Salida del laberinto. Encontrar un camino que permita salir de un laberinto definido en una matriz de [n x n], 
 # solo se puede mover de a una casilla a la vez –no se puede mover en diagonal– y que la misma sea adyacente y no esté marcada como pared. 
@@ -57,10 +56,10 @@ laberinto = [[1,0,1,1,0,1,1,1,1,1],
 def salida_del_laberinto (matriz, x, y, recorrido=[]):
        if (x>=0 and x<= len (matriz)-1) and (y>=0 and y<= len(matriz[0])-1):
             if (matriz [x][y]==2):
-            recorrido . append ([x,y])
-            print ('ha encontrado la salida del laberinto')
-            print (recorrido)
-            recorrido . pop ()
+                recorrido.append ([x,y])
+                print ('ha encontrado la salida del laberinto')
+                print (recorrido)
+                recorrido . pop ()
        elif (matriz [x][y]==1):
             matriz [x][y]=3
             recorrido . append ([x,y])
@@ -71,4 +70,4 @@ def salida_del_laberinto (matriz, x, y, recorrido=[]):
             recorrido . pop ()
             matriz [x][y]=1
 
-print ( salida_del_laberinto(laberinto, 0, 0)
+print ( salida_del_laberinto(laberinto, 0, 0))
