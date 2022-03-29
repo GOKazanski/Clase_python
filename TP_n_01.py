@@ -1,14 +1,19 @@
 # 5 - Desarrollar una función que permita convertir un número romano en un número decimal.
 
+n_romanos = {'M':1000,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1}
 
-def convertir_romano_a_decimal(romano):
-    n_romanos = {'M':1000,'D':500,'C':100,'L':50,'X':10,'V':5,'I':1}
-    
-
-    
-    
-    
-print(convertir_romano_a_decimal ('MCMLXXIV'))
+def convertir_romano_a_decimal (num, pos, n_romanos):
+    if (pos==(len(num)-1)):
+        return n_romanos[num[pos]]
+    else:
+        romana_actual = n_romanos [num[pos]]
+        ronana_siguiente = n_romanos [num[pos + 1]]
+        if (romana_actual < ronana_siguiente):
+            return - romana_actual + convertir_romano_a_decimal (num, pos + 1, n_romanos)
+        else:
+            if (romana_actual >= ronana_siguiente):
+                return romana_actual + convertir_romano_a_decimal (num, pos + 1, n_romanos)
+print (convertir_romano_a_decimal ('MCMLXXIV', 0, n_romanos))
 
 
 
