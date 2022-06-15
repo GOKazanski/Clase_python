@@ -100,7 +100,7 @@ class Lista():
     def barrido_Rap_Car(self):
         aux = self.__inicio
         while(aux is not None):
-            if('Raptors' in aux.info.name or 'Carnotaurus' in aux.info.name):
+            if('Raptors (Dromaeosauridae)' in aux.info.name or 'Carnotaurus' in aux.info.name):
                 print(aux.info)
             aux = aux.sig
 
@@ -111,3 +111,4 @@ class Lista():
             if('Compsognathus' in aux.info.name):
                 print(aux.info.zone_code)
             aux = aux.sig
+
