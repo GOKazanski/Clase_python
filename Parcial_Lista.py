@@ -87,3 +87,27 @@ class Lista():
             aux.sublista.barrido()
             aux = aux.sig
 
+# Tyrannosaurus Rex, Spinosaurus, Giganotosaurus con nivel ´critical’ o ‘high’
+    def barrido_dino_alarma(self):
+        aux = self.__inicio
+        while(aux is not None):
+            if('Tyrannosaurus Rex' in aux.info.name or 'Spinosaurus' in aux.info.name or 'Giganotosaurus' in aux.info.name):
+                if('critical' in aux.info.alert_level or 'high' in aux.info.alert_level):
+                    print(aux.info)
+            aux = aux.sig
+
+# pero solo de los dinosaurios Raptors y Carnotaurus
+    def barrido_Rap_Car(self):
+        aux = self.__inicio
+        while(aux is not None):
+            if('Raptors' in aux.info.name or 'Carnotaurus' in aux.info.name):
+                print(aux.info)
+            aux = aux.sig
+
+#zonas donde puedo encontrar dinosaurios Compsognathus
+    def barrido_Zona_Comp(self):
+        aux = self.__inicio
+        while(aux is not None):
+            if('Compsognathus' in aux.info.name):
+                print(aux.info.zone_code)
+            aux = aux.sig
