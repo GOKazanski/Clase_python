@@ -7,22 +7,44 @@ class Dino:
     #time;zone_code;dino_number;alert_level
     #{'name': 'Tyrannosaurus Rex', 'type': 'carnívoro ', 'number': 8,'period': 'cretácico superior', 'named_by': 'Osborn, 1905'},
     
-    def __init__(self, time, zone_code, dino_number, alert_level, name):
+    def __init__(self, time, zone_code, dino_number, alert_level, name, type, number, period, named_by):
         self.time = time
         self.zone_code = zone_code
         self.dino_number = dino_number
         self.alert_level = alert_level
         self.name = name
-        
-    
+        self.type = type
+        self.number = number
+        self.period = period
+        self.named_by = named_by
+      
     def __str__(self):
-        return f"{self.time} - {self.zone_code} - {self.dino_number} - {self.alert_level} - {self.name} "
+        return f"{self.time} - {self.zone_code} - {self.dino_number} - {self.alert_level} - {self.name} - {self.type} - {self.number} - {self.period} - {self.named_by}"
 
-def busqueda(buscado):
+def busqueda1(buscado):
     for dino in dinosaurs:
         if(int(buscado) == dino['number']):
-            return dino['name'] 
- 
+            return dino['name']
+
+def busqueda2(buscado):
+    for dino in dinosaurs:
+        if(buscado == dino['name']):
+            return dino['type']
+
+def busqueda3(buscado):
+    for dino in dinosaurs:
+        if(buscado == dino['name']):
+            return dino['number'] 
+
+def busqueda4(buscado):
+    for dino in dinosaurs:
+        if(buscado == dino['name']):
+            return dino['period'] 
+
+def busqueda5(buscado):
+    for dino in dinosaurs:
+        if(buscado == dino['name']):
+            return dino['named_by']         
 
 file =open('/home/gabriel/Documentos/2° año/Algoritmos/Clase_python/Parciales/alerts.txt')
 
@@ -31,30 +53,50 @@ lineas.pop(0)
 #print(lineas)
 lista_dinosaurs = Lista()
 lista_dino2=Lista()
+lista_jurasica=Lista()
+lista_total=Lista()
 
 for linea in lineas:
     dato = linea.split(';')
     dato[3] = dato[3][:-1]
-    dato.append(busqueda(dato[2]))
+    dato.append(busqueda1(dato[2]))
+    dato.append(busqueda2(dato[4]))
+    dato.append(busqueda3(dato[4]))
+    dato.append(busqueda4(dato[4]))
+    dato.append(busqueda5(dato[4]))
     lista_dinosaurs.insertar(Dino(dato[0],
                                     dato[1],
                                     dato[2],
                                     dato[3],
-                                    dato[4]),'time')
+                                    dato[4],
+                                    dato[5],
+                                    dato[6],
+                                    dato[7],
+                                    dato[8].split(', ')),'time')
     lista_dino2.insertar(Dino(dato[0],
                                 dato[1],
                                 dato[2],
                                 dato[3],
-                                dato[4]), 'name')
+                                dato[4],
+                                dato[5],
+                                dato[6],
+                                dato[7],
+                                dato[8].split(', ')),'name')
+
+print()
+print('el ultimo dinosaurio descubierto')
+
+
 
 print() 
-# listado por hora
+print('listado por hora')
 #lista_dinosaurs.barrido()
 
 print()
-# listado por monbre
+print('listado por monbre')
 #lista_dino2.barrido()
 
+print()
 print('eliminacion zonas WYG075, SXH966 y LYF010')
 dato = lista_dinosaurs.eliminar('WYG075','zone_code')
 dato = lista_dino2.eliminar('WYG075','zone_code')
@@ -63,8 +105,8 @@ dato = lista_dino2.eliminar('SXH966','zone_code')
 dato = lista_dinosaurs.eliminar('LYF010','zone_code')
 dato = lista_dino2.eliminar('LYF010','zone_code')
 
-print('zona HYD195 el nombre correcto del dinosaurio es Mosasaurus.')
 print()
+print('zona HYD195 el nombre correcto del dinosaurio es Mosasaurus.')
 dato = lista_dinosaurs.busqueda('HYD195', 'zone_code')
 if dato:
     dato.info.name = 'Mirta_Legran'
@@ -80,39 +122,22 @@ print()
 print('Lista dinos con alarma')
 lista_dinosaurs.barrido_dino_alarma()
 
-#class  Dino_cola:
-#    def  __init__ ( self, time, zone_code, dino_number, alert_level, name ):
-#        self.time = time
-#        self.zone_code = zone_code
-#        self.dino_number = dino_number
-#        self.alert_level = alert_level
-#        self.name = name 
-#
-#    def  __str__ ( self ):
-#        #return self.NombrePersonaje  + '-' + self . NombreHeroe + '-' + self . Genero
-#        return self.time - self.zone_code - self.dino_number - self.alert_level - self.name
-#
-#
-#
-C=Cola()
+Cola0=Cola()
 Cola1=Cola()
 Cola2=Cola()
-#
-#for Dino_cola in lista_dinosaurs:
-#    dato = lista_dinosaurs
-#    C.arribo(dato)
-#    print(dato)
 
 #dos colas, una con los datos de dinosaurios carnívoros y otra con los herbívoros, descarten las de nivel ‘low’ y ‘medium’
-while(not C.cola_vacia()):
-    x=C.atencion()
-    # dinosaurios carnívoros;
-    if (x.type == "carnívoro" and (x.alert_level is not 'low' or x.alert_level is not 'medium')):
-        Cola1.arribo(x)
+print()
+#print(lista_dinosaurs.tamanio())
 
-    # herbívoros
-    if (x.type =="herbívoro" and (x.alert_level is not 'low' or x.alert_level is not 'medium')):
-        Cola2.arribo(x)
+for i in range(lista_dinosaurs.tamanio()):
+    dino=lista_dinosaurs.obtener_elemento(i)
+    if ('critical' in dino.alert_level or 'high' in dino.alert_level):
+        if ('carnívoro' in dino.type):
+            Cola1.arribo(dino)
+        else:
+            if ('herbívoro' in dino.type):
+                Cola2.arribo(dino)
 
 print()
 print("dinosaurios carnívoros")
