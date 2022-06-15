@@ -3,20 +3,26 @@ from Parcial_Lista import Lista
 from Parcial_Cola import Cola
 
 class Dino:
+    
+    #time;zone_code;dino_number;alert_level
+    #{'name': 'Tyrannosaurus Rex', 'type': 'carnívoro ', 'number': 8,'period': 'cretácico superior', 'named_by': 'Osborn, 1905'},
+    
     def __init__(self, time, zone_code, dino_number, alert_level, name):
         self.time = time
         self.zone_code = zone_code
         self.dino_number = dino_number
         self.alert_level = alert_level
-        self.name = name     
+        self.name = name
+        
     
     def __str__(self):
-        return f"{self.time} - {self.zone_code} - {self.dino_number} - {self.alert_level} - {self.name}"
+        return f"{self.time} - {self.zone_code} - {self.dino_number} - {self.alert_level} - {self.name} "
 
 def busqueda(buscado):
     for dino in dinosaurs:
         if(int(buscado) == dino['number']):
-            return dino['name']
+            return dino['name'] 
+ 
 
 file =open('/home/gabriel/Documentos/2° año/Algoritmos/Clase_python/Parciales/alerts.txt')
 
@@ -34,7 +40,7 @@ for linea in lineas:
                                     dato[1],
                                     dato[2],
                                     dato[3],
-                                    dato[4]), 'time')
+                                    dato[4]),'time')
     lista_dino2.insertar(Dino(dato[0],
                                 dato[1],
                                 dato[2],
@@ -74,16 +80,73 @@ print()
 print('Lista dinos con alarma')
 lista_dinosaurs.barrido_dino_alarma()
 
-
+#class  Dino_cola:
+#    def  __init__ ( self, time, zone_code, dino_number, alert_level, name ):
+#        self.time = time
+#        self.zone_code = zone_code
+#        self.dino_number = dino_number
+#        self.alert_level = alert_level
+#        self.name = name 
+#
+#    def  __str__ ( self ):
+#        #return self.NombrePersonaje  + '-' + self . NombreHeroe + '-' + self . Genero
+#        return self.time - self.zone_code - self.dino_number - self.alert_level - self.name
+#
+#
+#
+C=Cola()
+Cola1=Cola()
+Cola2=Cola()
+#
+#for Dino_cola in lista_dinosaurs:
+#    dato = lista_dinosaurs
+#    C.arribo(dato)
+#    print(dato)
 
 #dos colas, una con los datos de dinosaurios carnívoros y otra con los herbívoros, descarten las de nivel ‘low’ y ‘medium’
+while(not C.cola_vacia()):
+    x=C.atencion()
+    # dinosaurios carnívoros;
+    if (x.type == "carnívoro" and (x.alert_level is not 'low' or x.alert_level is not 'medium')):
+        Cola1.arribo(x)
 
-c=Cola()
-cola1=Cola()
-cola2=Cola()
-cant_dino=lista_dinosaurs.tamanio()
+    # herbívoros
+    if (x.type =="herbívoro" and (x.alert_level is not 'low' or x.alert_level is not 'medium')):
+        Cola2.arribo(x)
 
-for i in range(cant_dino):
-    dato = lista_dinosaurs.time
-    c.arribo(dato)
-    print(dato)
+print()
+print("dinosaurios carnívoros")
+while(not Cola1.cola_vacia()):
+    x=Cola1.atencion()
+    print(x)
+
+print()
+print("dinosaurios herbívoro")
+while(not Cola2.cola_vacia()):
+    x=Cola2.atencion()
+    print(x)
+
+# un listado de toda la información que tienen procesada del archivo, pero solo de los dinosaurios
+#  Raptors y Carnotaurus; y los códigos de las zonas donde puedo encontrar dinosaurios Compsognathus
+print()
+print('Lista dinos Raptors y Carnotaurus')
+lista_dinosaurs.barrido_Rap_Car()
+print()
+print('Lista de las zonas donde puedo encontrar dinosaurios Compsognathus')
+lista_dinosaurs.barrido_Zona_Comp()
+
+# Clave mosquito
+# 1. si el número está entre 33 y 47 su valor alfanumérico esta ok.
+# 2. caso contrario
+#       si número es divisible por 3 entonces (número // 2) + 9 (es tu nuevo valor alfanumérico)
+#       sino número -14 (es tu nuevo valor alfanumérico)
+#   
+#       en cualquiera de los casos debes continuar procesandolo, es una solución parcial.
+#
+#  3. al final obtendrás la clave si sabes cómo hacer las cosas, pero recuerda ‘mosquito’ es la clave de todo.
+
+print()
+print ('La clave mosquito')
+
+
+print()
